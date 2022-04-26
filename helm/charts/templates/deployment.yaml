@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: {{ .Values.image.repository }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ["local", "n", "-p",  "{{.Values.volume.passwordMountPath}}", "-a", "{{.Values.volume.apiMountPath}}"]
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.container.configEnv }}
+          - secretRef:
+              name: {{ .Values.secrets.extSecretsEnv }}
+          ports:
+          - containerPort: {{ .Values.container.port }}
+          volumeMounts:
+            - name: {{ .Values.volume.apiMountName }}
+              mountPath: {{ .Values.volume.apiMountPath }}
+              subPath: {{ .Values.volume.apiMountSubPath }}
+            - name: {{ .Values.volume.passwordMountName }}
+              mountPath: {{ .Values.volume.passwordMountPath }}
+              subPath: {{ .Values.volume.passwordMountSubPath }}
+      volumes:
+        - name: {{ .Values.volume.apiMountName }}
+          secret:
+            secretName: {{ .Values.secrets.extSecretsApi }}
+            items:
+            - key: {{ .Values.secrets.extSecretsApiKey1 }}
+              path: {{ .Values.secrets.extSecretsApiKey1 }}
+        - name: {{ .Values.volume.passwordMountName }}
+          secret:
+            secretName: {{ .Values.secrets.extSecretsApi }}
+            items:
+            - key: {{ .Values.secrets.extSecretsApiKey2 }}
+              path: {{ .Values.secrets.extSecretsApiKey2 }}

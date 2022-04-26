@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  ROOT: "{{.Values.configMap.keeper.ROOT}}"
+  ETH_CHAIN_ID: "{{.Values.configMap.keeper.ETH_CHAIN_ID}}"
+  CHAINLINK_TLS_PORT: "{{.Values.configMap.keeper.CHAINLINK_TLS_PORT}}"
+  SECURE_COOKIES: "{{.Values.configMap.keeper.SECURE_COOKIES}}"
+  ALLOW_ORIGINS: "{{.Values.configMap.keeper.ALLOW_ORIGINS}}"
+  BLOCK_HISTORY_ESTIMATOR_TRANSACTION_PERCENTILE: "{{.Values.configMap.keeper.BLOCK_HISTORY_ESTIMATOR_TRANSACTION_PERCENTILE}}"
+  KEEPER_MINIMUM_REQUIRED_CONFIRMATIONS: "{{.Values.configMap.keeper.KEEPER_MINIMUM_REQUIRED_CONFIRMATIONS}}"
+  KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD: "{{.Values.configMap.keeper.KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD}}"
+  ETH_SECONDARY_URLS: "{{.Values.configMap.keeper.ETH_SECONDARY_URLS}}"
+  ETH_URL: "{{.Values.configMap.keeper.ETH_URL}}"
+  ETH_HTTP_URL: "{{.Values.configMap.keeper.ETH_HTTP_URL}}"
+  #DATABASE_LOCKING_MODE: "{{.Values.configMap.keeper.DATABASE_LOCKING_MODE}}"
+
+  
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: {{ .Values.container.configEnv }}

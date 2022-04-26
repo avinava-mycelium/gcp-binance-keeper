@@ -1,0 +1,11 @@
+variable name {}
+variable location {}
+variable project {}
+variable description {}
+variable network {}
+variable subnetwork {}
+variable service_account {}
+variable oauth_scopes {}
+variable type {}
+variable create {}
+variable update {}
