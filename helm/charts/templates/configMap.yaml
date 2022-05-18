@@ -11,7 +11,11 @@ data:
   ETH_SECONDARY_URLS: "{{.Values.configMap.keeper.ETH_SECONDARY_URLS}}"
   ETH_URL: "{{.Values.configMap.keeper.ETH_URL}}"
   ETH_HTTP_URL: "{{.Values.configMap.keeper.ETH_HTTP_URL}}"
-  #DATABASE_LOCKING_MODE: "{{.Values.configMap.keeper.DATABASE_LOCKING_MODE}}"
+  LOG_FILE_DIR: "{{.Values.configMap.keeper.LOG_FILE_DIR}}"
+  DATABASE_LOCKING_MODE: "{{.Values.configMap.keeper.DATABASE_LOCKING_MODE}}"
+  ETH_MAX_IN_FLIGHT_TRANSACTIONS: "{{.Values.configMap.keeper.ETH_MAX_IN_FLIGHT_TRANSACTIONS}}"
+  ETH_MAX_QUEUED_TRANSACTIONS: "{{.Values.configMap.keeper.ETH_MAX_QUEUED_TRANSACTIONS}}"
+  ETH_GAS_BUMP_TX_DEPTH: "{{.Values.configMap.keeper.ETH_GAS_BUMP_TX_DEPTH}}"
 
   
 kind: ConfigMap

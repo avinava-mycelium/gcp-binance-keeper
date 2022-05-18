@@ -14,6 +14,10 @@ spec:
       labels:
         app: {{ .Values.appName }}
     spec:
+      securityContext:
+          runAsUser: {{ .Values.securityContext.userId }}
+          runAsGroup: {{ .Values.securityContext.userId }}
+          fsGroup: {{ .Values.securityContext.userId }}
       containers:
         - name: {{ .Values.container.name }}
           image: {{ .Values.image.repository }}

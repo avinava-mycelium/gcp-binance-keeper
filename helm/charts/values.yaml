@@ -13,8 +13,11 @@ container:
 loadbalancer:
   port: 8068
 
+securityContext:
+  userId: 2000
+
 image:
-  repository: smartcontract/chainlink:1.3.0
+  repository: smartcontract/chainlink:1.4.1-nonroot
   pullPolicy: IfNotPresent
 
 volume:
@@ -42,7 +45,7 @@ secrets:
 
 configMap:
   keeper:
-    ROOT: '/chainlink'
+    ROOT: /tmp/chainlink
     ETH_CHAIN_ID: '56'
     CHAINLINK_TLS_PORT: '0'
     SECURE_COOKIES: 'false'
@@ -53,7 +56,11 @@ configMap:
     ETH_SECONDARY_URLS: 'https://nop:sppFRFaNtD9qUQgNHoK6LUdFwuHGhv@multichain.broadcast-mirror.chain.link/?chain_id=56'
     ETH_URL: 'wss://mainnet.binance-smart-chain.api.fiews.io/v2/ws/AWtDsb4iMRQbeEQRhHiFkK9d7MmRNR1pg0aucjit'
     ETH_HTTP_URL: 'https://mainnet.binance-smart-chain.api.fiews.io/v2/rpc/AWtDsb4iMRQbeEQRhHiFkK9d7MmRNR1pg0aucjit'
-    #DATABASE_LOCKING_MODE : 'lease'
+    LOG_FILE_DIR: /tmp/chainlink
+    DATABASE_LOCKING_MODE: lease
+    ETH_MAX_IN_FLIGHT_TRANSACTIONS: 3
+    ETH_MAX_QUEUED_TRANSACTIONS: 15
+    ETH_GAS_BUMP_TX_DEPTH: 3
 
 configMapSecrets:
   DATABASE_URL: DATABASE_URL
