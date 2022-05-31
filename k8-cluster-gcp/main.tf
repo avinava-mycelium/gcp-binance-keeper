@@ -11,7 +11,7 @@ resource "google_container_cluster" "primary" {
   }
   enable_autopilot = true
   node_config {
-    service_account = var.service_account
+    service_account = local.service_account
     oauth_scopes = [
       var.oauth_scopes
     ]
